@@ -32,7 +32,7 @@ public class MouseLook : NetworkBehaviour
     {
         float xRotate = Input.GetAxis("Mouse Y");
         float yRotate = Input.GetAxis("Mouse X");
-        if (xRotate < 0.05f && yRotate < 0.05f)
+        if (Mathf.Abs(xRotate) < 0.05f && Mathf.Abs(yRotate) < 0.05f)
             return false;
         rotationX -= Input.GetAxis("Mouse Y") * sensitivity;
         rotationY += Input.GetAxis("Mouse X") * sensitivity;

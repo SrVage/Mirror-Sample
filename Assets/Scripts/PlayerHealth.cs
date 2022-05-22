@@ -20,14 +20,17 @@ public class PlayerHealth:NetworkBehaviour, IDamage
         else
         {
             _health = 0;
-            Death();
+            RpcDeath();
         }
         RpcUpdateHealth(_health);
     }
 
-    private void Death()
+    [ClientRpc]
+    private void RpcDeath()
     {
-        OnStopClient();
+        if (hasAuthority)
+            FindObjectOfType<NetworkManager>().StopClient();
+       // OnStopClient();
     }
 
     [ClientRpc]
